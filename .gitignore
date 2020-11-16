@@ -1,2 +1,5 @@
 # JetBrains related
 /.idea
+
+# Private user files
+/private
