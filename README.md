@@ -51,8 +51,8 @@
 - `/` are solved problems
 - `X` are golden level solved probelms
 
-Day | [riccardo-negri][u01] | [Tommimon][u02] | [Gonduls][u03] | [marcomole00][u04] | [marcoparadina][u05] | [mynam3isg00d][u06]
---------- | ----------- | ----------- | ----------- | ----------- | ----------- | -----------
+Day | [riccardo-negri][u01] | [Tommimon][u02] | [Gonduls][u03] | [marcomole00][u04] | [marcoparadina][u05] | [mynam3isg00d][u06] | [LysergicHound][u07]
+--------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | -----------
 [1 ][d01] | [ ][u01d01] | [ ][u02d01] | [ ][u03d01] | [ ][u04d01] | [ ][u05d01] | [ ][u06d01] | [ ][u07d01] | [ ][u08d01] | [ ][u09d01] | [ ][u10d01] | [ ][u11d01] | [ ][u12d01] | [ ][u13d01] | [ ][u14d01] | [ ][u15d01] | [ ][u16d01] | [ ][u17d01] | [ ][u18d01] | [ ][u19d01] | [ ][u20d01]
 [2 ][d02] | [ ][u01d02] | [ ][u02d02] | [ ][u03d02] | [ ][u04d02] | [ ][u05d02] | [ ][u06d02] | [ ][u07d02] | [ ][u08d02] | [ ][u09d02] | [ ][u10d02] | [ ][u11d02] | [ ][u12d02] | [ ][u13d02] | [ ][u14d02] | [ ][u15d02] | [ ][u16d02] | [ ][u17d02] | [ ][u18d02] | [ ][u19d02] | [ ][u20d02]
 [3 ][d03] | [ ][u01d03] | [ ][u02d03] | [ ][u03d03] | [ ][u04d03] | [ ][u05d03] | [ ][u06d03] | [ ][u07d03] | [ ][u08d03] | [ ][u09d03] | [ ][u10d03] | [ ][u11d03] | [ ][u12d03] | [ ][u13d03] | [ ][u14d03] | [ ][u15d03] | [ ][u16d03] | [ ][u17d03] | [ ][u18d03] | [ ][u19d03] | [ ][u20d03]
@@ -87,7 +87,7 @@ Day | [riccardo-negri][u01] | [Tommimon][u02] | [Gonduls][u03] | [marcomole00][u
 [u04]: https://github.com/marcomole00
 [u05]: https://github.com/marcoparadina
 [u06]: https://github.com/mynam3isg00d
-[u07]: https://github.com/User07
+[u07]: https://github.com/LysergicHound
 [u08]: https://github.com/User08
 [u09]: https://github.com/User09
 [u10]: https://github.com/User10
@@ -278,31 +278,31 @@ Day | [riccardo-negri][u01] | [Tommimon][u02] | [Gonduls][u03] | [marcomole00][u
 [u06d23]: https://github.com/Tommimon/advent-of-code-2020/tree/master/mynam3isg00d/23
 [u06d24]: https://github.com/Tommimon/advent-of-code-2020/tree/master/mynam3isg00d/24
 [u06d25]: https://github.com/Tommimon/advent-of-code-2020/tree/master/mynam3isg00d/25
-[u07d01]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/1
-[u07d02]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/2
-[u07d03]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/3
-[u07d04]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/4
-[u07d05]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/5
-[u07d06]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/6
-[u07d07]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/7
-[u07d08]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/8
-[u07d09]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/9
-[u07d10]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/10
-[u07d11]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/11
-[u07d12]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/12
-[u07d13]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/13
-[u07d14]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/14
-[u07d15]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/15
-[u07d16]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/16
-[u07d17]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/17
-[u07d18]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/18
-[u07d19]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/19
-[u07d20]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/20
-[u07d21]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/21
-[u07d22]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/22
-[u07d23]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/23
-[u07d24]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/24
-[u07d25]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User07/25
+[u07d01]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/1
+[u07d02]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/2
+[u07d03]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/3
+[u07d04]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/4
+[u07d05]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/5
+[u07d06]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/6
+[u07d07]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/7
+[u07d08]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/8
+[u07d09]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/9
+[u07d10]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/10
+[u07d11]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/11
+[u07d12]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/12
+[u07d13]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/13
+[u07d14]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/14
+[u07d15]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/15
+[u07d16]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/16
+[u07d17]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/17
+[u07d18]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/18
+[u07d19]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/19
+[u07d20]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/20
+[u07d21]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/21
+[u07d22]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/22
+[u07d23]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/23
+[u07d24]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/24
+[u07d25]: https://github.com/Tommimon/advent-of-code-2020/tree/master/LysergicHound/25
 [u08d01]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User08/1
 [u08d02]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User08/2
 [u08d03]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User08/3
