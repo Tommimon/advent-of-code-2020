@@ -1,8 +1,8 @@
 # JetBrains related
-/.idea
+.idea/
 
 # VS Code related
-/.vscode
+.vscode/
 
 # Private user files
-/private
+private/
