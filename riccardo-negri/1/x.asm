@@ -28,7 +28,7 @@ PART2_SUCCESS: .asciiz "Here's your result for the second part:\n"
 .text
 WELCOME:
 	li $v0, 4			# 4 --> print_string
-	la $a0, WELCOME_STRING			# $a0 = address of null-terminated string to print    
+	la $a0, WELCOME_STRING		# $a0 = address of null-terminated string to print    
 	syscall
 
 ##### READ FILE TO BUFFER #####
@@ -79,7 +79,7 @@ PARSE_CICLE:
 
 FOUND_BACKSLASH_N:			# finally it's time to save the full number in the array
 	sw $s1, ($t1)			# save the full integer
-#	li $v0, 1			#  1 --> print_int
+#	li $v0, 1			# 1 --> print_int
 #	move $a0, $s1
 #	syscall				# print the item just added
 	li $t6, 1			# reset to 1 the multiplier
@@ -90,7 +90,7 @@ FOUND_BACKSLASH_N:			# finally it's time to save the full number in the array
 
 END_PARSE_CICLE:
 	sw $s1, ($t1)			# save the LAST INTEGER integer (the last one doen't have a '\n' at the end)
-#	li $v0, 1			#  1 --> print_int
+#	li $v0, 1			# 1 --> print_int
 #	move $a0, $s1
 #	syscall				# print the item just added
 	li $v0, 4			# 4 --> print_string
@@ -131,12 +131,12 @@ PART1_END_LOOP_FAIL:
 	
 PART1_END_LOOP_SUCCESS:
 	li $v0, 4			# 4 --> print_string
-	la $a0, PART1_LOOP_SUCCESS		# $a0 = address of null-terminated string to print    
+	la $a0, PART1_LOOP_SUCCESS	# $a0 = address of null-terminated string to print    
 	syscall
 	mult $t0, $t1			# multiply the two numbers that sum up to 2020
 	mflo $t2
 	li $v0, 4			# 4 --> print_string
-	la $a0, PART1_SUCCESS			# $a0 = address of null-terminated string to print    
+	la $a0, PART1_SUCCESS		# $a0 = address of null-terminated string to print    
 	syscall
 	li $v0, 1			# 1 --> print_int 
 	move $a0, $t2
@@ -186,7 +186,7 @@ PART2_END_LOOP_FAIL:
 	
 PART2_END_LOOP_SUCCESS:
 	li $v0, 4			# 4 --> print_string
-	la $a0, PART2_LOOP_SUCCESS		# $a0 = address of null-terminated string to print    
+	la $a0, PART2_LOOP_SUCCESS	# $a0 = address of null-terminated string to print    
 	syscall
 	mult $t0, $t1			# multiply the two numbers that sum up to 2020
 	mflo $t3
