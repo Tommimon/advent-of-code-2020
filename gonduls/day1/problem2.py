@@ -1,9 +1,7 @@
-import os
-inputf = open('input.txt', 'r')
-inlist = inputf.readlines()
-for element in inlist:
-    inlist[inlist.index(element)]=int(element[:-1])
-    #print(element[:-1])
+with open('input.txt', 'r') as inputf:
+    inlist = inputf.readlines()
+    for element in inlist:
+        inlist[inlist.index(element)]=int(element)
 
 somma = 2020
 exitv = 0
