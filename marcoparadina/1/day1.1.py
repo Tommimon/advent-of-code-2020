@@ -1,4 +1,4 @@
-with open('marcoparadina/input_d1.1.txt', 'r') as f:
+with open('marcoparadina/1/input_d1.1.txt', 'r') as f:
     arr=[]
     ans=0
     for line in f:
