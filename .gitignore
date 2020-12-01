@@ -6,3 +6,6 @@
 
 # Private user files
 private/
+
+# Mac files
+.DS_Store
