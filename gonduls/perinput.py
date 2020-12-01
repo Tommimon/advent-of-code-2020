@@ -1,6 +1,5 @@
-import os
-inputf = open('input.txt', 'r')
-inlist = inputf.readlines()
-for element in inlist:
-    inlist[inlist.index(element)]=int(element[:-1])
-print(inlist)
+with open('input.txt', 'r') as inputf:
+    inlist = inputf.readlines()
+    for element in inlist:
+        inlist[inlist.index(element)]=int(element)
+    print(inlist)
