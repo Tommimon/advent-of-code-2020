@@ -7,20 +7,31 @@ day = None
 solve = None
 real_usernames = []
 
+#def get_usernames():
+#	global real_usernames
+#
+#	for line in lines:
+#		if "Day |" in line:
+#			usernames = re.search(r"\[.+]", line)
+#			usernames = usernames.group()
+#			usernames = usernames.replace('|', ' ')
+#			usernames = usernames[1:].split('[')
+#			for user in usernames:
+#				if (usernames.index(user) % 2) == 0:
+#					real_usernames.append(user[:-1])
+#			break
+
 def get_usernames():
 	global real_usernames
 
 	for line in lines:
 		if "Day |" in line:
-			start_index = lines.index(line)		# start of the table
-			usernames = re.search(r"\[.+]", line)
-			usernames = usernames.group()
-			usernames = usernames.replace('|', ' ')
-			usernames = usernames[1:].split('[')
+			usernames = line.replace("</p></sup></sub>", " <sup><sub><p>").split("<sup><sub><p>")
 			for user in usernames:
-				if (usernames.index(user) % 2) == 0:
-					real_usernames.append(user[:-1])
+				if (usernames.index(user) % 2) == 1:
+					real_usernames.append(user)
 			break
+
 
 
 def get_data_from_user():
