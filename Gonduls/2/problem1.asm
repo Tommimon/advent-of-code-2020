@@ -2,12 +2,11 @@
 
 .eqv DIM 44
 .eqv BACKSLASH_N 10
-.eqv zero 48
+.eqv ZERO 48
 
-str1: .asciiz "Lettera: "
+STR1: .asciiz "Lettera: "
 fileName: .asciiz "input.txt"
-fileWords: .space DIM
-car0: .asciiz "0"
+FILEWORDS: .space DIM
 
 
 	.text
@@ -25,7 +24,7 @@ main:
 	#read the file
 	li $v0, 14		# read_file syscall code = 14
 	move $a0,$s0		# file descriptor
-	la $a1,fileWords  	# The buffer that holds the string of the WHOLE file
+	la $a1,FILEWORDS  	# The buffer that holds the string of the WHOLE file
 	la $a2,1024		# hardcoded buffer length
 	syscall
 	
@@ -39,21 +38,21 @@ main:
         move $s1, $zero          #s1 is index
 WHILE:  
         bge $s1, $s0, ENDWHILE
-        la $t0, fileWords
+        la $t0, FILEWORDS
         addu $t0, $t0, $s1
-        li $v0, 4			# 4 --> print_string
-	    la $a0, str1		# $a0 = address of null-terminated string to print    
-	    syscall
+        li $s2, 0                   #erase everything in s2
+        lb $s2, 0($t0)              #load byte only in s2
         li $t1, BACKSLASH_N
-        li $a0, 0                   #erase everything
-        lb $a0, 0($t0)              #load byte only
-        bne $a0, $t1, NOTN
-        li $a0, zero
-NOTN:
+        beq $s2, $t1, ISN
+        li $v0, 4			# 4 --> print_string
+	    la $a0, STR1		# $a0 = address of null-terminated string to print    
+	    syscall
+        move $a0, $s2
         li $v0, 11
         syscall                     #print char
-        li $v0, 1
-        syscall
+ISN:
+#        li $v0, 1
+#        syscall
         li $a0, BACKSLASH_N
         li $v0, 11
         syscall
