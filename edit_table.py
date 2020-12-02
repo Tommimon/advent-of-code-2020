@@ -26,7 +26,7 @@ def get_usernames():
 
 	for line in lines:
 		if "Day |" in line:
-			usernames = line.replace("</p></sup></sub>", " <sup><sub><p>").split("<sup><sub><p>")
+			usernames = line.replace("</sub></sup>", " <sup><sub>").split("<sup><sub>")
 			for user in usernames:
 				if (usernames.index(user) % 2) == 1:
 					real_usernames.append(user)
