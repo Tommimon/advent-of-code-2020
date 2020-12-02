@@ -1,8 +1,9 @@
- with open('marcoparadina/2/input_d2.txt') as f:
+with open('marcoparadina/2/input_d2.txt') as f:
     i=0
     inf_arr=[]
     sup_arr=[]
-    glob_counter=0
+    sol_part1=0
+    sol_part2=0
     input_arr=[]
     for line in f:
         for word in line.split():
@@ -46,7 +47,6 @@
         ################looks for curr_char in the password###################
         i=i+1
         el=input_arr[i]
-        print(el)
         freq=0
         for c in el:
             if c==curr_char:
@@ -55,6 +55,19 @@
         # but the logical operators '&' doesn't work so I find myself forced to do this horribleness.
         if inf<=freq:
             if sup>=freq:
-                glob_counter=glob_counter+1
+                sol_part1+=1
+        ##################################part2###############################################
+        flag=0
+        if len(el)>=(sup):
+            if (el[sup-1]==curr_char) ^ (el[inf-1]==curr_char):
+                flag=1
+                
+        elif len(el)<(sup):
+            if len(el)>=(inf):
+                if el[inf-1]==curr_char:
+                    flag=1
+
+        sol_part2+=flag
         i=i+1
-print('result:', glob_counter)
+    print('part1 solution:', sol_part1)
+    print('part2 solution:', sol_part2)
