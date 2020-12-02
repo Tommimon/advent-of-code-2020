@@ -3,6 +3,7 @@
 .eqv DIM 44
 .eqv BACKSLASH_N 10
 .eqv ZERO 48
+.eqv PIU 43
 
 STR1: .asciiz "Lettera: "
 fileName: .asciiz "input.txt"
@@ -25,7 +26,7 @@ main:
 	li $v0, 14		# read_file syscall code = 14
 	move $a0,$s0		# file descriptor
 	la $a1,FILEWORDS  	# The buffer that holds the string of the WHOLE file
-	la $a2,1024		# hardcoded buffer length
+	la $a2,DIM		# hardcoded buffer length
 	syscall
 	
 	#Close the file
@@ -44,20 +45,26 @@ WHILE:
         lb $s2, 0($t0)              #load byte only in s2
         li $t1, BACKSLASH_N
         beq $s2, $t1, ISN
+        li $t1, PIU
+        beq $s2, $t1, ISN
+
+
         li $v0, 4			# 4 --> print_string
 	    la $a0, STR1		# $a0 = address of null-terminated string to print    
 	    syscall
         move $a0, $s2
         li $v0, 11
         syscall                     #print char
-ISN:
 #        li $v0, 1
 #        syscall
         li $a0, BACKSLASH_N
         li $v0, 11
         syscall
-
-        addi $s1, $s1, 1
+		addi $s1, $s1, 1
+		j WHILE
+ISN:
+		addi $s1, $s1, 1
+		addi $s1, $s1, 1
         j WHILE
 ENDWHILE:
         li $v0, 10      		# End program
