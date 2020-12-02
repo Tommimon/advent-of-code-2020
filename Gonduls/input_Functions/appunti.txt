@@ -1,1 +1,1 @@
-per runnare mars: java -jar /mnt/d/Pierluigi/scuola/20-21/ACSO/modulo1/Mars4_5.jar [nome file]
+java -jar /mnt/d/Pierluigi/scuola/20-21/ACSO/modulo1/Mars4_5.jar input.asm
