@@ -19,6 +19,7 @@ while (fscanf(fp,"%d",&input[i]) != EOF)
 }
 printf("prima %d", prima_parte(input));
 printf("secondo %d", seconda_parte(input));
+fclose(fp);
 
 }
 
