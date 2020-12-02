@@ -1,3 +1,8 @@
+##Non funziona, non riesco a liberarmi di un carattere in lettura
+##sospetto sia \0 ma non ne ho le prove, è ingiusto incolparlo finchè innocente
+##mi do a python che è più facile
+##al massimo ci ritorno (non è vero)
+
 .data
 
 .eqv DIM 44
