@@ -55,7 +55,7 @@ To run the script use `python3 edit_table.py` in your terminal
 - `*` if you solved the first part
 - `**` if you also solved the second part
 
-Day | [riccardo-negri][u01] | [Tommimon][u02] | [Gonduls][u03] | [marcomole00][u04] | [marcoparadina][u05] | [mynam3isg00d][u06] | [LysergicHound][u07] | [MatteoBlack][u08] | [SebPelli][u09] | [Sunriser45][u10]
+Day | [riccardo-negri][u01] | <img src="https://avatars0.githubusercontent.com/u/37435103?s=400&v=4" alt="drawing" width="30"/> | [Gonduls][u03] | [marcomole00][u04] | [marcoparadina][u05] | [mynam3isg00d][u06] | [LysergicHound][u07] | [MatteoBlack][u08] | [SebPelli][u09] | [Sunriser45][u10]
 --------- | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
 [1 ][d01] | [**][u01d01] | [**][u02d01] | [**][u03d01] | [**][u04d01] | [**][u05d01] | [**][u06d01] | [  ][u07d01] | [**][u08d01] | [**][u09d01] | [  ][u10d01] | [  ][u11d01] | [  ][u12d01] | [  ][u13d01] | [  ][u14d01] | [  ][u15d01] | [  ][u16d01] | [  ][u17d01] | [  ][u18d01] | [  ][u19d01] | [  ][u20d01]
 [2 ][d02] | [**][u01d02] | [**][u02d02] | [  ][u03d02] | [**][u04d02] | [**][u05d02] | [**][u06d02] | [  ][u07d02] | [**][u08d02] | [**][u09d02] | [  ][u10d02] | [  ][u11d02] | [  ][u12d02] | [  ][u13d02] | [  ][u14d02] | [  ][u15d02] | [  ][u16d02] | [  ][u17d02] | [  ][u18d02] | [  ][u19d02] | [  ][u20d02]
