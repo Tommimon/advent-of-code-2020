@@ -1,1 +1,12 @@
-per runnare mars: java -jar /mnt/d/Pierluigi/scuola/20-21/ACSO/modulo1/Mars4_5.jar [nome file]
+per eseguire file input.asm java -jar /mnt/d/Pierluigi/scuola/20-21/ACSO/modulo1/Mars4_5.jar input.asm
+
+valori ascii mips: 
+    "\n"=10
+    "0"=48
+    "a"=97
+    " "=32
+    ":"=58
+    "+"=43
+
+
+###########################################

@@ -35,7 +35,7 @@ counter2 = 0
 
 with open('input.txt', 'r') as file:
     for fullLine in file.readlines():
-        line = fullLine[:-1]  # remove ending \n
+        line = fullLine.replace('\n', '')  # remove ending \n
         if valid_pass_count(line):
             counter1 += 1
         if valid_pass_pos(line):
