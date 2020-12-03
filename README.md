@@ -611,11 +611,3 @@ To run the script use `python3 edit_table.py` in your terminal
 [u20d23]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User20/23
 [u20d24]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User20/24
 [u20d25]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User20/25
-on/advent-of-code-2020/tree/master/User20/18
-[u20d19]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User20/19
-[u20d20]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User20/20
-[u20d21]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User20/21
-[u20d22]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User20/22
-[u20d23]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User20/23
-[u20d24]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User20/24
-[u20d25]: https://github.com/Tommimon/advent-of-code-2020/tree/master/User20/25
