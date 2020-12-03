@@ -1,3 +1,7 @@
+# Don't run this crap it's fuck slow. The other program in this directory is uglier but runs
+# reasonably fast (Same algorithm but doesn't implement the expansion_factor function. I just plugged
+# a big ass value in so it runs correctly with pretty much every input file and doesn't take 5 minutes
+# to run).
 def set_go(line_count): # makes the move down when move_down is 2
     go=1
     if (line_count % 2)!=0:
@@ -7,6 +11,7 @@ def set_go(line_count): # makes the move down when move_down is 2
 def expansion_factor(move_right, move_down, file_len):  #how much to expand every line of the input to obtain the complete map
     i=file_len/move_down
     j=i*move_right
+    # todo: j needs to be scaled down proportionally to the number of columns of the file
     return int(j)   
 
 def file_length(file_name): #computes the length of a file in a single function in order to make it faster (sligthly)
