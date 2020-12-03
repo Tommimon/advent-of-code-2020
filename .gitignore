@@ -9,3 +9,6 @@ private/
 
 # Mac files
 .DS_Store
+
+# VS files
+.vs/
