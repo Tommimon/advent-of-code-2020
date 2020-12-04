@@ -14,7 +14,5 @@ for element in lista:
     lista[i]=element.split(' ')[:-1]
     if (len(lista[i])==8 or (len(lista[i])==7 and not ('cid' in element))):
         risultato += 1
-    #print (lista[i])
-    #print (len(lista[i]))
     i += 1
 print (risultato)
