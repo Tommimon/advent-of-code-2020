@@ -31,9 +31,7 @@ for element in inlist:
         continue
     lista[-1]=lista[-1]+element[:-1]+' '
 
-
 ris=0
 for element in lista:
-    if (conditions(element)):
-       ris += 1
+    ris += conditions(element)
 print (ris)
