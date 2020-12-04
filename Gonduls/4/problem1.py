@@ -1,6 +1,6 @@
 with open('input.txt', 'r') as inputf:
     inlist = inputf.readlines()
-
+#would need a space (' ') on last line, not bothering 'cause it works. To be added otherwise, see problem2.py in same dir.
 lista = ['']
 for element in inlist:
     if (element == '\n'):
