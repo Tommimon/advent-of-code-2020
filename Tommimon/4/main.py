@@ -25,7 +25,7 @@ def valid_pair(key, value):
     elif key == 'hcl':
         if value[0] == '#':
             for c in value[1:]:
-                if c not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']:
+                if c not in '0123456789abcdef':
                     return False
             return True
     elif key == 'ecl':
