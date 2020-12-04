@@ -11,8 +11,7 @@ for element in inlist:
 risultato=0
 i=0
 for element in lista:
-    lista[i]=element.split(' ')[:-1]
-    if (len(lista[i])==8 or (len(lista[i])==7 and not ('cid' in element))):
+    if (len(element.split(' '))==9 or (len(element.split(' '))==8 and not ('cid' in element))):
         risultato += 1
     i += 1
 print (risultato)
