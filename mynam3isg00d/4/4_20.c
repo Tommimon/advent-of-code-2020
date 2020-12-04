@@ -5,7 +5,8 @@
 #include<stdlib.h>
 
 int flagCID = 0;
-int gCounter = 0;
+int gCounter = 0; //counter for second part
+int pCounter = 0; //counter for first part
 
 char list[8][4] = {
     "byr","iyr","eyr","hgt","hcl","ecl","pid","cid"
@@ -79,6 +80,7 @@ int validate(char fid[], char value[]) {
 int main() {
     
     int fieldCount = 0;
+    int count = 0;
     //Open the file and variable declaration
     FILE *fp = fopen("input.txt", "r");
 
@@ -99,19 +101,22 @@ int main() {
         if(result==1) printf("\t[O]\n");
         if(result==0) printf("\t[X]\n");
         fieldCount += result;
-
+        count++;                                    //Part 1 implementation was added at the end, so it's very sloppy
+                                                    //Yea... like you give a shit, right?
         //New passport check
         c = fgetc(fp);
         if(c == '\n') {
             c = fgetc(fp);
             if(c == '\n') {
                 printf("\nFieldCount: %d, ", fieldCount);
+                if (count == 8 || (count == 7 && flagCID == 0)) pCounter++;
                 if (fieldCount == 8 || (fieldCount == 7 && flagCID == 0)) {
                     printf("passport is valid. Glory to Arstotzka\n\n");
                     gCounter++;
                 } else {
                     printf("passport invalid. You are under arrest\n\n");
                 }
+                count = 0;
                 fieldCount = 0;
                 flagCID = 0;
 
@@ -129,7 +134,7 @@ int main() {
         printf("passport invalid. You are under arrest\n\n");
     }
 
-    printf("\n-----------------------\nPassports valid: %d", gCounter);
+    printf("\n-----------------------\nPassports valid (part 1 restrictions): %d\nPassports valid (part 2 restrictions): %d", pCounter, gCounter);
 
     fclose(fp);
     return 0;
