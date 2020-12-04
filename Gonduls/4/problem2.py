@@ -1,5 +1,7 @@
+import string
 with open('input.txt', 'r') as inputf:
     inlist = inputf.readlines()
+    inlist[-1]=inlist[-1]+' '   #serve uno spazio alla fine dell'ultimissima riga per far funzionare bene il codice, altrimenti si mangia un carattere
 
 def conditions(elem):
     if(not(len(elem.split(' '))==9 or (len(elem.split(' '))==8 and not ('cid' in elem)))):
@@ -21,11 +23,12 @@ def conditions(elem):
         if (info[:3] == 'ecl' and (len(info[4:])!=3 or (not (info[4:] in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'])))):
             print(str(elem)+' 4')
             return 0
-        if (info[:3] == 'hcl' and (len(info[4:])!=7 or info[5] != '#')):
-            try:
-                int(info[5:], 16)
-            print(str(elem)+' 4')
+        if (info[:3] == 'hcl' and (len(info[4:])!=7 or info[4] != '#' or not all(c in string.hexdigits for c in info[5:]))):
+            print(str(elem)+' 5')
             return 0
+        #if (info[:3] == 'hgt' and ()):
+        #    print(str(elem)+' 6')
+        #    return 0
     return 1
 
 lista = ['']
