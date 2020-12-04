@@ -59,6 +59,6 @@ if sum(fieldCheck) == 7:
      nOfPassports+=1 #in case the last passport in the list is valid 
 if sum(valueCheck) == 7:
      nOfPassportsLimitations += 1
-print(nOfPassports) 
+print('\n' + str(nOfPassports) )
 print(nOfPassportsLimitations)
             
