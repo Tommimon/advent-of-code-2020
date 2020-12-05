@@ -67,6 +67,8 @@ WHILE:
         syscall
 		addi $s1, $s1, 1
 		j WHILE
+		mul
+		addi 
 ISN:
 		addi $s1, $s1, 1
 		addi $s1, $s1, 1
