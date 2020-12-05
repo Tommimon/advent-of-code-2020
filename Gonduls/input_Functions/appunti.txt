@@ -12,5 +12,10 @@ B 066
 R 082
 L 075
 
+syscall:
+    v0 = 11: stampa byte -> a0 = byte
+    v0 = 1 stampa int
+
+
 ###########################################
 9382 byte di input
