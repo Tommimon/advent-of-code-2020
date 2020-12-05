@@ -1,3 +1,8 @@
+###########################################
+
+
+
+
 per eseguire file input.asm java -jar /mnt/d/Pierluigi/scuola/20-21/ACSO/modulo1/Mars4_5.jar input.asm
 
 valori ascii mips: 
@@ -15,7 +20,30 @@ L 075
 syscall:
     v0 = 11: stampa byte -> a0 = byte
     v0 = 1 stampa int
+	li $v0, 1			# 1 --> print_int, 11 stampa byte, 4 stampa stringa se terminata da \0
+	move $a0, $s2
+	syscall
 
+#open_file
+	li $v0, 13			# 13 --> open_file
+	la $a0, FILE_NAME		# $a0 = address of null-terminated string containing filename
+	li $a1, 0 			# $a1 = flags, 0 for read-only
+	li $a2, 0		        # $a2 = mode, mode is ignored
+	syscall				# file descriptor returned in $v0
 
-###########################################
-9382 byte di input
+# print whats in the file
+	li $v0, 4		# read_string syscall code = 4
+	la $a0,fileWords
+	syscall
+
+READ_FILE:
+	li $v0, 14			# 14 --> read_file
+	move $a0, $s7			# $a0 = file descriptor
+	la $a1, BUFFER 			# $a1 = address of input buffer
+	li $a2, FILE_MAX_SIZE		# $a2 = maximum number of characters to read
+	syscall				# $v0 contains number of characters read (0 if end-of-file, negative if error).
+
+#Close the file
+    	li $v0, 16         		# close_file syscall code
+    	move $a0,$s0      		# file descriptor to close
+    	syscall

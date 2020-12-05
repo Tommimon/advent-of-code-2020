@@ -41,7 +41,7 @@ READ_FILE:
     move $a0, $s7      # file descriptor to close
     syscall            # close file
 
-###########Actual program########################
+########### Actual program ########################
 
 	la $s0, BUFFER_LINE
 	la $s1, TEMPORARY
@@ -52,20 +52,17 @@ READ_FILE:
     li $t1, 1024 
     move $t0, $zero     #filling for, t0 is index
 
-for: #filling for, fills array of all 0
+for: 					#filling for, fills array of all 0
     bge $t0, $t1, endfor
     addu $t2, $t0, $s2
     li $t3, L_V
     sb $t3, ($t2)
     addi $t0, $t0, 1
     j for
+
 endfor:
-    la $t1, END
     li $t1, '\0'
     sb $t1, 1($t2)      #t2 still is at $s2 + 1023, n
-    li $v0, 4			# 4 --> print_string(asciiz )
-	la $a0, END
-	syscall
     move $t0, $zero     #outside for, t0 is index
 
 START:					#outside for
@@ -87,8 +84,8 @@ START_COPYING:			#inside for
 	move $t4, $zero
 	lb $t4, ($t3)		#loads byte from t3 
 	sb $t4, ($t2)		#stores byte from from load
-operations: 
 	addi $t1, $t1, 1	#t1 ++
+
 if:	
 	li $t2, L_B
 	bne $t4, $t2, not_B
@@ -107,29 +104,17 @@ ENDCOPY:				#end inside for
     li $t2, L_O
     addu $s1, $s1, $s2
     sb $t2, ($s1)
-        
-#    li $v0, 11			# 1 --> print_byte
-#	move $a0, $t2
-#	syscall
-#    li $v0, 4			# 4 --> print_string
-#    la $a0, END
-#    syscall
-#   li $v0, 1			# 1 --> print_int
-#	move $a0, $s1
-#	syscall
-#   li $v0, 4			# 4 --> print_string
-#	la $a0, END
-#	syscall
 	addi $t0, $t0, 1	#t0 ++
 	j START
 
 ENDPRINT:				#end outside for
     move $t0, $zero     #filling for, t0 is index
     li $t1, 1024
-secfor: #filling for, fills array of all 0
-    bge $t0, $t1, secendfor
+
+sec_for:				#almost last for
+    bge $t0, $t1, end
     addu $t2, $t0, $s2
-    lb $t3, -1($t2)
+    lb $t3, -1($t2)		#loads three consecutive bytes, in order to check for OVO pattern
     lb $t4, ($t2)
     lb $t5, 1($t2)
     li $t6, L_O
@@ -141,17 +126,56 @@ secfor: #filling for, fills array of all 0
     li $v0, 1			# 1 --> print_int
     move $a0, $t0
     syscall
+	j end
+
 end_condition:
     addi $t0, $t0, 1
-    j secfor
-secendfor:
-#	li $v0, 4			# 4 --> print_string(asciiz )
-#	move $a0, $s2
-#	syscall
-    li $v0, 4			# 4 --> print_string(asciiz )
+    j sec_for
+
+end:
+	li $v0, 4
 	la $a0, END
 	syscall
+#print airplane sits
+	li $t0 1024
+	move $t1, $zero
+	move $t2, $zero
 
+plane_for:
+	bge $t1, $t0, real_end
+	bne $t2, $zero, not_zero
+	li $v0, 11
+	li $a0, '|'
+	syscall
 
-	li $v0, 10      		# End program
+not_zero:
+	li $v0, 11
+	la $s2, BYTE_ARRAY
+	addu $a0, $s2, $t1
+	lb $a0, ($a0)
+	syscall
+	li $t3, 3
+	bne $t2, $t3, not_3
+	li $v0, 11
+	li $a0, '\t'
+	syscall
+
+not_3:
+	li $t3, 7
+	bne $t2, $t3, not_7
+	li $v0, 11
+	li $a0, '|'
+	syscall
+	li $v0, 11
+	li $a0, '\n'
+	syscall
+	li $t2, -1
+
+not_7:
+	addi $t1, $t1, 1
+	addi $t2, $t2, 1
+	j plane_for
+	
+real_end:
+	li $v0, 10      		# End program (the real one)
 	syscall

@@ -12,7 +12,6 @@
 BUFFER: .space FILE_MAX_SIZE
 BUFFER_LINE: .asciiz "0000000000\n"
 FILE_NAME: .asciiz "input.txt"
-END: .asciiz "\n"
 TEMPORARY: .space 4
 RESULT: .space 4
 
@@ -39,7 +38,7 @@ READ_FILE:
     move $a0, $s7      # file descriptor to close
     syscall            # close file
 
-#Actual program
+############################### Actual program ###########################################
 	la $s0, BUFFER_LINE
 	la $s1, TEMPORARY
 	la $s2, RESULT
