@@ -1,6 +1,9 @@
 .seat {
     padding: 7px;
 }
+.lane {
+	padding: 4px;
+}
 .occupied {
     background: red;
 }
@@ -9,4 +12,22 @@
 }
 .notexist {
     background: #cacaca;
+}
+.number {
+	padding-right: 2px;
+}
+table {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+html, body, input, textarea, select, button {
+    color: #e8e6e3;
+    text-align: center;
+}
+html, body, input, textarea, select, button {
+    background-color: #181a1b;
+}
+* {
+    scrollbar-color: #202324 #454a4d;
 }

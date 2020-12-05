@@ -1,8 +1,6 @@
 <?php
 
-// Day 4 solution of Advent Of Code 2020 by Riccardo Negri
-// First part answer: 991
-// Second part answer: 534
+// Day 5 of Advent Of Code 2020 Render by Riccardo Negri
 
 const COL_BITS = 3; 
 const ROW_BITS = 7; 
@@ -26,8 +24,6 @@ if ($file = fopen("input.txt", "r")) {
     fclose($file);
 }
 
-//echo "Max ID (First part answer): ".max($SeatsInfo[2])."\n";
-
 foreach (range(0, 2**(COL_BITS)-1) as $column) {
     foreach (range(0, 2**(ROW_BITS)-1) as $row) {
         $ID = $row * 8 + $column;
@@ -38,8 +34,6 @@ foreach (range(0, 2**(COL_BITS)-1) as $column) {
         }
     }
 }
-
-//echo "My ID (Second part answer): ".$myID."\n";
 
 ?>
 <html>
@@ -52,7 +46,10 @@ echo "<link rel='stylesheet' type='text/css' href='style.css' />";
 <table>
 <?php
 foreach (range(-1, 2**(ROW_BITS)-1) as $row) {
-
+    if ($row % 32 == 0 and $row != 0) {
+        echo "<tr><td><div class=\"seat\"></div></td></tr>
+";
+    }
     echo "<tr>";
     if ($row != -1) {
         echo "<td><p>".$row."</p></td>";
@@ -60,8 +57,12 @@ foreach (range(-1, 2**(ROW_BITS)-1) as $row) {
     else {
         echo "<td><div class=\"seat\"></div></td>";
     }
-    
+
     foreach (range(0, 2**(COL_BITS)-1) as $column) {
+        if ($column == 3 or $column == 5) {
+            echo "<td><div class=\"lane\"></div></td>";
+        }
+
         if ($row == -1) {
              echo "<td><p>".$column."</p></td>";
         }
@@ -76,7 +77,6 @@ foreach (range(-1, 2**(ROW_BITS)-1) as $row) {
             else {
                 $class = "class=\"seat notexist\"";
             }
-            //$class = "class=\"myseat\"";
             echo "<td><div ".$class."></div></td>";
         }
     }

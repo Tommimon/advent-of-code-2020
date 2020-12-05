@@ -1,6 +1,6 @@
 <?php
 
-// Day 4 solution of Advent Of Code 2020 by Riccardo Negri
+// Day 5 solution of Advent Of Code 2020 by Riccardo Negri
 // First part answer: 991
 // Second part answer: 534
 
