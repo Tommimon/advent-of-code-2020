@@ -1,8 +1,8 @@
 .data
 
 .eqv FILE_MAX_SIZE 9382		# used to set buffer size for reading	
-#.eqv NUMBERS_AMOUNT 10
-.eqv LETTERS_AMOUNT_BYTE 10	# 200 * 4 bytes
+.eqv LETTERS_AMOUNT 10
+.eqv LETTERS_AMOUNT_BYTE 12	# add 2: "\n" and misterious char
 .eqv LINES 782
 .eqv BACKSLASH_N 10
 .eqv L_F 70
@@ -12,10 +12,11 @@
 
 NUM_ARRAY: .space LETTERS_AMOUNT_BYTE
 BUFFER: .space FILE_MAX_SIZE
-BUFFER_LINE: .space LETTERS_AMOUNT_BYTE
+BUFFER_LINE: .asciiz "0000000000\n"
 FILE_NAME: .asciiz "input.txt"
 WELCOME_STRING: .asciiz "Welcome to me copying riccardo from a different problem hoping to work things out!\n"
-PARSED_CORRECTLY: .asciiz "Parsed numbers hopefully correctly (I don't check if the file it's opened correctly or if it's not empty).\n"
+PARSED_CORRECTLY: .asciiz "Parsed \n"
+
 
 .text
 #WELCOME:
@@ -46,18 +47,41 @@ READ_FILE:
 
 #PRINT_FOR_DEBUG:
 #	li $v0, 4			# 4 --> print_string
-#    move $s7, $a0
 #	la $a0, BUFFER			# $a0 = address of null-terminated string to print    
 #	syscall
 
-PRINT_ONLY_STRINGS:
-    li $s1, LINES
-    move $s0, $zero     #s0 è i
-START_PRINT:
-    bge $s0, $s1, ENDPRINT
-    li $v0, 4
-    la $a0, 
+#PRINT_ONLY_STRINGS:
+    li $s1, LINES		#outside for, up to lines number
+    move $t0, $zero     #outside for, t0 is index
+START_PRINT:			#outside for
+    bge $t0, $s1, ENDPRINT
+	li $s2,	10#LETTERS_AMOUNT_BYTE #inside for, up to characters in line
+	move $t1, $zero		#inside for, t1 is index
+START_COPYING:			#inside for
+	bge $t1, $s2, ENDCOPY
+	la $t2, BUFFER_LINE #t2 = &buff line
+	addu $t2, $t2, $t1  #t2 = &(buff line + t1)
+	la $t3, BUFFER		#t3 = &buff
+	addu $t3, $t3, $t1  #t3 = &(buff + t1)
+	li $t4, LETTERS_AMOUNT_BYTE #t4 = 12
+	mul $t4, $t4, $t0	#t4 = 12 * t0
+	addu $t3, $t3, $t4	#t3 = &(buff + t1 + 12*t0)
+	lb $t4, ($t3)		#loads byte from t3 
+	sb $t4, ($t2)		#stores byte from from load
+	addi $t1, $t1, 1	#t1 ++
+	j START_COPYING
+ENDCOPY:
+#	la $t4, ENDING
+#	lb $t4, 1($t2)
+#	addiu $t4, $t4, 1
+#	lb $t4, 2($t2)
+	li $v0, 4
+    la $a0, BUFFER_LINE
+	syscall
+	addi $t0, $t0, 1	#t0 ++
 
+	j START_PRINT
+ENDPRINT:
 
 
 ########## PARSE INPUT ##########
