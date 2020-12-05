@@ -17,21 +17,32 @@ def ticketCheck(line):
         
 
 iDs=[]
+rows=[]
+cols=[]
+
 
 with open('marcomole00/5/input.txt') as f:
     for line in f:
         line = line.strip('\n')
         tempRow,tempCol, tempId = ticketCheck(line)
-        
+        rows.append(tempRow)
+        cols.append(tempCol)
         iDs.append( tempId)
 
     
     iDs.sort()
-    for i in range(len(iDs)):
-        if  (iDs[i+1] - iDs[i])==2 and ((iDs[i] +1 ) not in iDs):  #at the end the index goes out of range but really who cares
+    for i in range(len(iDs)-1):
+        if  (iDs[i+1] - iDs[i])==2 and ((iDs[i] +1 ) not in iDs):
             print('my ID is :', iDs[i]+1)
         
     print(max(iDs))
+#this is a simple visualization of the data, just to check that there is only a 'hole' of ids
+    for row in range(128):
+        print(f'{row})', end='')
+        for col in range(8):
+            if (row*8 +col) in iDs: print ('x', end='')
+            else: print('o',end  = '')
+        print('')
     
         
 
