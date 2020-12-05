@@ -8,13 +8,15 @@
 .eqv L_B 66
 .eqv L_L 75
 .eqv L_R 82
+.eqv L_O 79
+.eqv L_V 86
 
 BUFFER: .space FILE_MAX_SIZE
 BUFFER_LINE: .asciiz "0000000000\n"
 FILE_NAME: .asciiz "input.txt"
 END: .asciiz "\n"
 TEMPORARY: .space 4
-RESULT: .space 4
+BYTE_ARRAY: .space 1025 #2^10 più carattere \0
 
 .text
 
@@ -39,13 +41,33 @@ READ_FILE:
     move $a0, $s7      # file descriptor to close
     syscall            # close file
 
-#Actual program
+###########Actual program########################
+
 	la $s0, BUFFER_LINE
 	la $s1, TEMPORARY
-	la $s2, RESULT
+    la $s2, BYTE_ARRAY
     li $t7, LINES		#outside for, up to lines number
+
+#every bit of byte arrays has to be 0
+    li $t1, 1024 
+    move $t0, $zero     #filling for, t0 is index
+
+for: #filling for, fills array of all 0
+    bge $t0, $t1, endfor
+    addu $t2, $t0, $s2
+    li $t3, L_V
+    sb $t3, ($t2)
+    addi $t0, $t0, 1
+    j for
+endfor:
+    la $t1, END
+    li $t1, '\0'
+    sb $t1, 1($t2)      #t2 still is at $s2 + 1023, n
+    li $v0, 4			# 4 --> print_string(asciiz )
+	la $a0, END
+	syscall
     move $t0, $zero     #outside for, t0 is index
-	move $s2, $zero		#result
+
 START:					#outside for
     bge $t0, $t7, ENDPRINT
 	li $t6,	LETTERS_AMOUNT #inside for, up to characters in line
@@ -82,17 +104,54 @@ not_R:
 	j START_COPYING
 
 ENDCOPY:				#end inside for
-	ble $s1, $s2, NOT_WORTH_IT #if temporary <= result: continue
-	move $s2, $s1
-
-NOT_WORTH_IT:
+    li $t2, L_O
+    addu $s1, $s1, $s2
+    sb $t2, ($s1)
+        
+#    li $v0, 11			# 1 --> print_byte
+#	move $a0, $t2
+#	syscall
+#    li $v0, 4			# 4 --> print_string
+#    la $a0, END
+#    syscall
+#   li $v0, 1			# 1 --> print_int
+#	move $a0, $s1
+#	syscall
+#   li $v0, 4			# 4 --> print_string
+#	la $a0, END
+#	syscall
 	addi $t0, $t0, 1	#t0 ++
 	j START
 
 ENDPRINT:				#end outside for
-	li $v0, 1			# 1 --> print_int
-	move $a0, $s2
+    move $t0, $zero     #filling for, t0 is index
+    li $t1, 1024
+secfor: #filling for, fills array of all 0
+    bge $t0, $t1, secendfor
+    addu $t2, $t0, $s2
+    lb $t3, -1($t2)
+    lb $t4, ($t2)
+    lb $t5, 1($t2)
+    li $t6, L_O
+    li $t7, L_V
+#if t4 == V && t3==O && t5 == O
+    bne $t4, $t7, end_condition
+    bne $t3, $t6, end_condition
+    bne $t5, $t6, end_condition
+    li $v0, 1			# 1 --> print_int
+    move $a0, $t0
+    syscall
+end_condition:
+    addi $t0, $t0, 1
+    j secfor
+secendfor:
+#	li $v0, 4			# 4 --> print_string(asciiz )
+#	move $a0, $s2
+#	syscall
+    li $v0, 4			# 4 --> print_string(asciiz )
+	la $a0, END
 	syscall
+
 
 	li $v0, 10      		# End program
 	syscall
