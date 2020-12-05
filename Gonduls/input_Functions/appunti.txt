@@ -10,4 +10,4 @@ valori ascii mips:
 
 
 ###########################################
-158 basso
+9382 byte di input
