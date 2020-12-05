@@ -43,6 +43,9 @@ foreach (range(0, 2**(COL_BITS)-1) as $column) {
 
 ?>
 <html>
+<?php
+echo "<link rel='stylesheet' type='text/css' href='style.css' />";
+?>
 <body>
 <h1>Welcome to the plane seats checking system</h1>
 <h2>Advent of Code 2020 edition</h2>
@@ -77,24 +80,10 @@ foreach (range(-1, 2**(ROW_BITS)-1) as $row) {
             echo "<td><div ".$class."></div></td>";
         }
     }
-    echo "</tr>";
+    echo "</tr>
+";
 }
 ?>
 </table>
-<style>
-.seat {
-    padding: 7px;
-}
-.occupied {
-    background: red;
-    
-}
-.myseat {
-    background: green;
-}
-.notexist {
-    background: #cacaca;
-}
-</style>
 </body>
 </html> 

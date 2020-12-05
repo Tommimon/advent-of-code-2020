@@ -1,0 +1,12 @@
+.seat {
+    padding: 7px;
+}
+.occupied {
+    background: red;
+}
+.myseat {
+    background: green;
+}
+.notexist {
+    background: #cacaca;
+}
