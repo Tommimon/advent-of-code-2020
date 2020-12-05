@@ -1,4 +1,4 @@
-
+#i'm an idiot, this algoritm is fucking useless, the FB and LR notation is literally binary notation. 
 def ticketCheck(line):
     rowMin = 0
     rowMax = 127
