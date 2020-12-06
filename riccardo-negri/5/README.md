@@ -8,4 +8,4 @@ Open `render.html` with a browser.
 
 Example of how render.html is gonna look like:
 
-![Render](/render.png "Render")
+![Render](/riccardo-negri/5/render.png "Render")
