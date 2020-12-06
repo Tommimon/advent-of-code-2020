@@ -15,8 +15,8 @@ with open('input.txt', 'r') as f:
 		if line == '\n':
 			for letter in string.ascii_letters:
 				condition = True
-				for linee in group:
-					if letter not in linee:
+				for line in group:
+					if letter not in line:
 						condition = False
 				if condition:
 					total_2 += 1
