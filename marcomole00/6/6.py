@@ -12,9 +12,14 @@ def checkGroup(group):
     for ans in first:
         obama = False
         for children in group:
-            if ans in children: obama = True
-            else: obama = False
-        if obama == True: nOfAnswerEverybodyInAGroupAnswered +=1
+            if ans in children: 
+                obama = True
+            else: 
+                obama = False
+                break
+        if obama == True:
+            print(ans)
+            nOfAnswerEverybodyInAGroupAnswered +=1
 
     return nOfAnswerEverybodyInAGroupAnswered
 
