@@ -16,7 +16,6 @@ with open('marcoparadina/6/input6.txt') as f:
             group+=line
             for letter in (string.ascii_lowercase):
                     if letter not in line:
-                        #print('duce')
                         check[ord('a')-ord(letter)]=0
 print('Solution to part :', anyone_answered)
 print('Solution to part 2:', everyone_answered)
