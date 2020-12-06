@@ -1,8 +1,3 @@
-###########################################
-
-
-
-
 per eseguire file input.asm java -jar /mnt/d/Pierluigi/scuola/20-21/ACSO/modulo1/Mars4_5.jar input.asm
 
 valori ascii mips: 
@@ -47,3 +42,9 @@ READ_FILE:
     	li $v0, 16         		# close_file syscall code
     	move $a0,$s0      		# file descriptor to close
     	syscall
+		
+
+import string
+for letter in string.ascii_lowercase:
+    result += all(letter in el for el in element) checks how many letters are in every element of a list
+###########################################
