@@ -1,7 +1,7 @@
 def contains(rules, found, color):
     for r in rules:
-        for elem in r:
-            if color in elem[1:]:
+        for elem in r[1:]:
+            if color in elem:
                 found.add(r[0])
                 contains(rules, found, r[0])
 
