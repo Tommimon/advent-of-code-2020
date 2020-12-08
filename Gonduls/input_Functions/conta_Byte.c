@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define INPUT "/mnt/d/Pierluigi/programmazione/adventofcode/20/advent-of-code-2020/Gonduls/2/input.txt"
+#define INPUT "/mnt/d/Pierluigi/programmazione/adventofcode/20/advent-of-code-2020/Gonduls/8/input.txt"
 
 int main(){
     int c=1;
