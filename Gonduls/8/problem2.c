@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+//Like problem1, but tries, for every nop or jmp, swapping between the 2 and checking index
 #define INPUT "input.txt"
 #define MAX 654
 
@@ -10,52 +10,72 @@ typedef struct{
     int seen;
 }operation;
 
-void input(operation* array, int limit);
-//void stampa (operation array[], int limit);
-int result(operation array[], int accumulator);
+void input(operation* array);
+int result(operation array[], int *accumulator, int index);
+int try(operation array[]);
+void stampa (operation array[]);
 
 int main (){
-    int accumulator=0;
     operation array[MAX];
-    input(array, MAX);
-    accumulator = result(array, accumulator);
-    printf ("%d\n", accumulator);
-    //stampa(array, MAX);
+    input(array);
+    printf ("%d\n", try(array));
     return 0;
 }
 
-/*void stampa (operation array[], int limit){
-    int i;
-    for (i=0; i<limit; i++){
-        printf("%s %d\n", array[i].op, array[i].value);
-    }
-}
-*/
-
-void input(operation* array, int limit){
+void input(operation* array){
     int i, error = 0;
     FILE * input;
     input = fopen(INPUT, "r");
-    while (i<limit && error != EOF){
+    while (i<MAX && error != EOF){
         fscanf(input, "%s %d", array[i].op, &array[i].value);
         array[i].seen=0;
         error = fgetc(input);
         i++;
     }
-    if (i != limit && error != EOF)
+    fclose(input);
+    if (i != MAX && error != EOF)
         printf("an error may have occured\n");
 }
 
-int result(operation array[], int accumulator){
-    if(array->seen)
-        return(accumulator);
-    array->seen = 1;
-    if(strcmp(array->op, "nop") == 0)
-        return(result(array+1, accumulator));
-    if(strcmp(array->op, "acc") == 0)
-        return(result(array+1, accumulator + array->value));
-    if(strcmp(array->op, "jmp") == 0)
-        return(result(array+array->value, accumulator));
+int result(operation array[], int *accumulator, int index){
+    if (index==MAX)
+        return index;
+    if((array+index)->seen)
+        return(index);
+    (array+index)->seen = 1;
+    if(strcmp((array + index)->op, "nop") == 0)
+        return(result(array, accumulator, index+1));
+    if(strcmp((array + index)->op, "acc") == 0){
+        *accumulator=*accumulator + (array + index)->value;
+        return(result(array, accumulator, index +1));
+    }
+    if(strcmp((array + index)->op, "jmp") == 0){
+        return(result(array, accumulator, index + (array+index)->value));
+    }
     printf("error, program closing\n");
+    return 0;
+}
+
+int try(operation array[]){
+    int i, j;
+    int accumulator;
+    for (i=0; i<MAX; i++){
+        accumulator=0;
+        for (j=0; j<MAX; j++)
+            (array+j)->seen=0;
+        if(strcmp((array + i)->op, "nop") == 0){
+            strcpy((array + i)->op, "jmp");
+            if(result(array, &accumulator, 0) == MAX)
+                return accumulator;
+            strcpy((array + i)->op, "nop");
+        }
+        if(strcmp((array + i)->op, "jmp") == 0){
+            strcpy((array + i)->op, "nop");
+            if(result(array, &accumulator, 0) == MAX)
+                return accumulator;
+            strcpy((array + i)->op, "jmp");
+        }
+    }
+    printf("Error occured, no nop or jmp eligeble\n");
     return 0;
 }

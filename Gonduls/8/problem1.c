@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-
+//I'm sorry for the lack of comments, I couldn't bother. But I can briefly explain the program here:
+//input -> main -> result. Result just executes the three rules in a recursive manner,
+//always passing the next rule and with that deciding what happens next
 #define INPUT "input.txt"
 #define MAX 654
 
@@ -10,30 +12,28 @@ typedef struct{
     int seen;
 }operation;
 
-void input(operation* array, int limit);
+void input(operation* array);
 int result(operation array[], int accumulator);
 
-int main (){
-    int accumulator=0;
+int main (){;
     operation array[MAX];
-    input(array, MAX);
-    accumulator = result(array, accumulator);
-    printf ("%d\n", accumulator);
-    //stampa(array, MAX);
+    input(array);
+    printf ("%d\n", result(array, 0));
     return 0;
 }
 
-void input(operation* array, int limit){
+void input(operation* array){
     int i, error = 0;
     FILE * input;
     input = fopen(INPUT, "r");
-    while (i<limit && error != EOF){
+    while (i<MAX && error != EOF){
         fscanf(input, "%s %d", array[i].op, &array[i].value);
         array[i].seen=0;
         error = fgetc(input);
         i++;
     }
-    if (i != limit && error != EOF)
+    fclose(input);
+    if (i != MAX && error != EOF)
         printf("an error may have occured\n");
 }
 
