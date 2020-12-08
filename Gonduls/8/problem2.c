@@ -11,6 +11,7 @@ typedef struct{
 }operation;
 
 void input(operation* array, int limit);
+//void stampa (operation array[], int limit);
 int result(operation array[], int accumulator);
 
 int main (){
@@ -22,6 +23,14 @@ int main (){
     //stampa(array, MAX);
     return 0;
 }
+
+/*void stampa (operation array[], int limit){
+    int i;
+    for (i=0; i<limit; i++){
+        printf("%s %d\n", array[i].op, array[i].value);
+    }
+}
+*/
 
 void input(operation* array, int limit){
     int i, error = 0;
