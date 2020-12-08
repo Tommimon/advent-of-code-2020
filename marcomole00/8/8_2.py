@@ -39,5 +39,3 @@ with open('marcomole00/8/input.txt') as file:
         else: break
 
 print(accumulator)
-
-
