@@ -1,7 +1,3 @@
-lines = []
-
-
-
 with open('marcomole00/9/input.txt')as file:
     lines = file.read().split('\n')
     lines = list(map(int,lines))
@@ -23,7 +19,6 @@ with open('marcomole00/9/input.txt')as file:
     arrayNumbers = []
     n = 0
     for number in linesBefore:
-        temp = 0
         del arrayNumbers[:]
         end = False
         i= 0
@@ -40,9 +35,3 @@ with open('marcomole00/9/input.txt')as file:
             print(min(arrayNumbers) + max(arrayNumbers))
             break
         n = n+1
-
-
-            
-
-        
-                        
