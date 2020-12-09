@@ -48,3 +48,99 @@ import string
 for letter in string.ascii_lowercase:
     result += all(letter in el for el in element) checks how many letters are in every element of a list
 ###########################################
+5956 byte
+
+
+#include <stdio.h>
+#include <string.h>
+
+#define INPUT "input2.txt"
+#define MAX 9//654
+
+typedef struct{
+    char op[4];
+    int value;
+    int seen;
+}operation;
+
+void input(operation* array);
+int result(operation array[], int *accumulator, int index);
+int try(operation array[], int limit);
+void stampa (operation array[], int limit);
+
+int main (){
+    operation array[MAX];
+    input(array);
+    //stampa(array, MAX);
+    //printf("line\n");
+    //printf ("%d\n", try(array, MAX));
+    //stampa(array, MAX);
+    return 0;
+}
+
+void input(operation* array){
+    int i, error = 0;
+    FILE * input;
+    input = fopen(INPUT, "r");
+    while (i<MAX && error != EOF){
+        fscanf(input, "%s %d", array[i].op, &array[i].value);
+        array[i].seen=0;
+        error = fgetc(input);
+        i++;
+    }
+    fclose(input);
+    if (i != MAX /*&& error != EOF*/)
+        printf("an error may have occured\n");
+    //stampa(array, MAX);
+}
+
+int result(operation array[], int *accumulator, int index){
+    if (index==MAX)
+        return index;
+    if(array->seen)
+        return(index);
+    array->seen = 1;
+    if(strcmp((array + index)->op, "nop") == 0)
+        return(result(array, accumulator, index+1));
+    if(strcmp((array + index)->op, "acc") == 0){
+        *accumulator=*accumulator + (array + index)->value;
+        return(result(array, accumulator, index +1));
+    }
+    if(strcmp((array + index)->op, "jmp") == 0)
+        return(result(array, accumulator, index + (array+index)->value));
+    printf("error, program closing\n");
+    return 0;
+}
+
+int try(operation array[], int limit){
+    int i, j;
+    int accumulator;
+    for (i=0; i<limit; i++){
+        accumulator=0;
+        for (j=0; j<limit; j++)
+            (array+j)->seen=0;
+        stampa(array, MAX);
+        printf("line\n");
+        if(strcmp((array + i)->op, "nop") == 0){
+            strcpy((array + i)->op, "jmp");
+            if(result(array, &accumulator, 0) == MAX)
+                return accumulator;
+            strcpy((array + i)->op, "nop");
+        }
+        if(strcmp((array + i)->op, "jmp") == 0){
+            strcpy((array + i)->op, "nop");
+            if(result(array, &accumulator, 0) == MAX)
+                return accumulator;
+            strcpy((array + i)->op, "jmp");
+        }
+    }
+    printf("Error occured, no nop or jmp eligeble\n");
+    return 0;
+}
+
+void stampa (operation array[], int limit){
+    int i;
+    for (i=0; i<limit; i++){
+        printf("%s %d %d\n", array[i].op, array[i].value, array[i].seen);
+    }
+}

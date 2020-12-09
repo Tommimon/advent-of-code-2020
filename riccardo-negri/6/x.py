@@ -32,4 +32,4 @@ with open('input.txt', 'r') as f:
 			group.append(line)
 
 print("First part answer: ", total_1)
-print("First part answer: ", total_2)
+print("Second part answer: ", total_2)
