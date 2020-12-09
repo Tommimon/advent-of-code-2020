@@ -4,7 +4,7 @@ with open('input.txt', 'r') as inputf:
         lista.append(int(line))
 
 #calculating number and putting it in resultpart1
-for ind in range(27 , len(lista)):
+for ind in range(25, len(lista)):
     notfound = True
     for eligable in lista[ind-25:ind]:
         if ((lista[ind]-eligable) in lista[ind-25:ind]):
@@ -13,7 +13,7 @@ for ind in range(27 , len(lista)):
     if(notfound):
         resultpart1=lista[ind]
         break
-
+#check tommaso's program for a better algorithm
 for start in range(len(lista)):
     partial = 0
     notfound = True
