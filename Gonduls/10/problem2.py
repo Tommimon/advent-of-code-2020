@@ -1,3 +1,4 @@
+#It genuily could work, I wouldn't be able to tell you, it didn't end
 with open('input.txt', 'r') as inputf:
         lista= list(map(int, inputf.read().split('\n')))
 lista.append(0)
