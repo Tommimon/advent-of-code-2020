@@ -24,7 +24,7 @@ while True:
                         if lines[yy][xx] == 'L': break
                         xx += dx
                         yy += dy
-                    
+                        #part1
                     """ if  0<= xx < R and 0<= yy < C: 
                         if lines[yy][xx] == '#': 
                             occupied +=1 """
@@ -41,7 +41,7 @@ while True:
     for row in lines:
         for el in row:
             if el == '#': add+=1
-    print(add)
+    #print(add)
     if add ==15: 
         for row in lines: print(row)
         break
