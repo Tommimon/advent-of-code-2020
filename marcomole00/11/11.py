@@ -1,17 +1,15 @@
-def removeEx(lista,char):
-    for el in lista:
-        if el != char: lista.remove(el)
-    return lista
 
-with open('marcomole00/11/input.txt') as file:
+
+with open('marcomole00/11/test') as file:
     lines = file.read().split('\n')
     lines = list(map(list, lines))
-    cop = lines.copy()
-    first = True
+    cop = []
+    old = 0
+
     
 while True:
-    print('ciao')
-    cop = lines.copy()
+    #print('ciao')
+    copia = list(map(list, map(tuple, lines)))
     for i in  range(len(lines)):
     
         for j in range(len(lines[i])):
@@ -44,7 +42,6 @@ while True:
                     if lines[i+1][j+1] != '#': seatsOccupied[7] = 0
                 except IndexError: pass
                 if (sum(seatsOccupied)) == 0: 
-                    change = True
                     lines[i][j] = '#'
             
             elif lines[i][j] == '#':
@@ -75,13 +72,16 @@ while True:
                 except IndexError: pass
                 if (sum(seatsOccupied)) >= 4: 
                     lines[i][j] = 'L'
-                    print(lines[i][j], '  ', print(cop[i][j]))
-    if lines == cop: break
-add = 0
+    add = 0
+    for line in lines: 
+        for let in line: 
+            if let == '#': add+=1
+    if old == add: break #why this doesn't work padre pio porco maledetto
+    else: old = add 
 
-for line in lines: 
-    for let in line: 
-        if let == '#': add+=1
-   
+
 print(add)
+
+
+
         
