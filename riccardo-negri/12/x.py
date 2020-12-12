@@ -6,7 +6,7 @@
 # left 90° -->  (x, y) = (y*-1, x*1) --> -1+1
 # right 90° --> (x, y) = (y*1, x*-1) --> +1-1
 
-# rotate P in respect of F 
+# rotate P about F 
 def rotate(P, F, angle):
     temp = [P[0]-F[0], P[1]-F[1]]
     temp = [temp[1] * angle[0], temp[0] * angle[1]]
