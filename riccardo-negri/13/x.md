@@ -1,4 +1,4 @@
-# Part Two
+# Part Two Solution (below you can find example five solution)
 We want to find the earliest timestamp such that the first bus ID departs at that time and each subsequent listed bus ID departs at the subsequent minute given by his position in the list of bus IDs.
 
 | ID (Bus ID) | Delta Time |
@@ -22,7 +22,7 @@ My input for part 2 is:
 ***
 
 ## Apply the condition to a pair of busses at a time and find all the times t (for each pair) where the condition is satisfied. 
-Do this on 9 pair so that every number is used exactly two times.
+Do this on 9 pairs so that every number is used exactly two times.
 
 ID 19 with ID 41
 ```
@@ -69,10 +69,10 @@ ID 19 with ID 23
 solve t = 0 (mod 19), t+73 = 0 (mod 23)
 --> t = 437n + 19
 ```
-!!! In all these equations **n is a integer number**, but we actually now it must be positive since time is not negative
+!!! In all these equations **n is a integer number**, but we actually know it must be positive since time can not be negative.
 
-## We want to find the timestamps ```t``` where all these conditions are met. So I put all the ```t```s equal to each other in a system.
-(I changed all the ```n```s in other variables because they are indipendent between all these equations)
+## We want to find the timestamps ```t``` where all these conditions are met. So I put all the ```t``` equal to each other in a system.
+(I changed all the ```n``` with other names because they are indipendent between all these equations)
 
 ```
 779a+114 == 21443b+20901
@@ -98,7 +98,7 @@ Which then becomes
 851 h - 437 i = -184
 ```
 
-## Now we have to solve this sistem remembering that all our variables are positive integers.
+## Now we have to solve this system remembering that all our variables are positive integers.
 It took me very long to find a way to solve this system given that the variables must be integers. I tried many websites and libraries, but none seemed to work.
 
 Then, after a couple hours, I found what I was looking for: "Solving a system of linear diophantine equations using the Hermite normal form of an integer matrix via the Havas-Majewski-Matthews LLL-based algorithm" at http://www.numbertheory.org/php/axb.html
@@ -126,8 +126,8 @@ Now just take the shortest solution vector:
 V = (270363189832, 9821989687, 23688328070, 952999660087, 558654973154, 8514085171, 6673201890, 247488748389, 481951773179) 
 ```
 
-## Calculate the timestap
-Take ```270363189832``` which is the smallest possible value of the variable ```a``` and calculate the timestamp with the equation found at the start:
+## Calculate the timestamp
+Take ```270363189832``` which is the smallest possible value of the variable ```a``` and calculate the timestamp with the equation found above:
 
 ```
 t = 779a+114
@@ -141,16 +141,15 @@ t = 779a+114
 ```
 
 ## Considerations
-I must study some Number Theory for the future, but luckly this time my Linear Algebra skills were enough to find the answer.
+I must study some Number Theory for the future and maybe try first an "intelligent bruteforce" approach (I know that in this puzzle works perfectly - check marcomole00 solution), but luckly this time my Linear Algebra skills were enough to find the answer.
 
 
 
 ***
+----
 ***
 
-
-
-# Same algorithm applied to example five (```1789,37,47,1889```)  
+# Same resolution method applied to example five
 
 | ID (Bus ID) | Delta Time |
 |   :----:    |   :----:   |
@@ -158,6 +157,11 @@ I must study some Number Theory for the future, but luckly this time my Linear A
 | 37          | 1          |
 | 47          | 2          |
 | 1889        | 3          |
+
+Input for example five is:
+```
+1789,37,47,1889
+```
 
 ***
 
@@ -184,7 +188,7 @@ solve t = 0 (mod 1789), t+3 = 0 (mod 1889)
 --> t = 3379421 n + 2467031
 ```
 
-## WWe want to find the timestamps ```t``` where all these conditions are met. So I put all the ```t```s equal to each other in a system.
+## We want to find the timestamps ```t``` where all these conditions are met. So I put all the ```t``` equal to each other in a system.
 
 ```
 66193 a + 30413 = 1739 b + 1220
@@ -200,7 +204,7 @@ Which then becomes
 88783 c - 3379421 d = 2427365
 ```
 
-## Now we have to solve this sistem remembering that all our variables are positive integers.
+## Now we have to solve this system remembering that all our variables are positive integers.
 
 The system has 3 equations in 4 variables so:
 ```
@@ -219,8 +223,8 @@ Shortest solution vector:
 V = (18161, 691294, 13540, 355)  
 ```
 
-## Calculate the timestap
-Now just take ```18161``` which is the smallest possible value of the variable ```a``` and calculate the timestamp with the equation found at the start:
+## Calculate the timestamp
+Take ```18161``` which is the smallest possible value of the variable ```a``` and calculate the timestamp with the equation found above:
 
 ```
 t = 66193 a + 30413
