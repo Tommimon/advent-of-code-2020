@@ -48,4 +48,3 @@ import string
 for letter in string.ascii_lowercase:
     result += all(letter in el for el in element) checks how many letters are in every element of a list
 ###########################################
-10736036857830 too high
