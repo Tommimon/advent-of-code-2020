@@ -51,7 +51,7 @@ for index, num in enumerate(file):
 						for addr in addr_list:
 							addr_list_new.append(replace_bit(addr, bit, 36-index2-1))
 					addr_list = addr_list_new
-			for elm in addr_list:
-				dictionary[elm] = int(file[index+1])
+			for addr in addr_list:
+				dictionary[addr] = int(file[index+1])
 				
 print("Second part answer: ", get_sum(dictionary))
