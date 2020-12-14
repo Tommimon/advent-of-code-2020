@@ -17,29 +17,29 @@ with open('input.txt', 'r') as f:
 	file = f.read().replace('=', '').replace('mem[', ' ').replace(']','').replace('mask', '-1').split()
 
 dictionary = {}
-for index, num in enumerate(file):
+for index, addr in enumerate(file):
 	if index%2 == 0:
-		num = int(num)
-		if num == -1:		#it's a mask
+		addr = int(addr)
+		if addr == -1:		#it's a mask
 			curr_mask = file[index+1]
 		else:
 			value = int(file[index+1])
 			for index2, char in enumerate(curr_mask):
 				if char != 'X':
 					value = replace_bit(value, int(char), 36-index2-1)
-			dictionary[num] = value
+			dictionary[addr] = value
 
 print("First part answer:  ", get_sum(dictionary))
 
 dictionary = {}
-for index, num in enumerate(file):
+for index, addr in enumerate(file):
 	if index%2 == 0:
-		num = int(num)
-		if num == -1:		#it's a mask
+		addr = int(addr)
+		if addr == -1:		#it's a mask
 			curr_mask = file[index+1]
 		else:
 			addr_list=[]
-			addr_list.append(num)
+			addr_list.append(addr)
 			for index2, char in enumerate(curr_mask):
 				addr_list_new = []
 				if char == '1':
