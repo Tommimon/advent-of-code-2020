@@ -21,14 +21,14 @@ for ticket in lista[index:]:
             break
     if(valid):
         valid_list.append(fields)
-#creates list of possible po
+#creates list of possible position inside a ticket for each rule
 rules_positions = []
 for rule in rules:
     rules_positions.append([])
     for i in range(len(fields)):
         if all(map(lambda ticket: ((rule[0][0]<=ticket[i]<=rule[0][1]) or (rule[1][0]<=ticket[i]<=rule[1][1])), valid_list)):
             rules_positions[-1].append(i)
-
+#eliminates impossible positions that other rules have already taken
 while (any(map(lambda el: len(el)!=1, rules_positions))):
     for j in range(len(rules_positions)):
         if (len(rules_positions[j])==1):
@@ -36,6 +36,7 @@ while (any(map(lambda el: len(el)!=1, rules_positions))):
             for ind, elem in enumerate(rules_positions):
                 if(len(elem)!=1 and to_remove in elem):
                     rules_positions[ind].remove(to_remove)
+#calculates result
 result = 1
 my_ticket = list(map(int, lista[lista.index('your ticket:')+1].split(',')))
 for index in rules_positions[:6]:
