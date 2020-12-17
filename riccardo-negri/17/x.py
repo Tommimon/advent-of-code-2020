@@ -29,7 +29,7 @@ def active_neighbors(x,y,z,w, active_coords):
 								return count
 	return count
 
-# Probably not the most efficient way to do this, but it executes in a reasonable time with the input given (about 4 min)
+# Probably not the most efficient way to do this, but it executes in a reasonable time (about 4 min)
 # Because I wanted to solve both parts with the same code, part 1 takes a little longer than what is really needed
 for part in [False, True]:		# part one and two
 	active_coords, x_coord, y_coord = get_coords()
@@ -38,7 +38,7 @@ for part in [False, True]:		# part one and two
 	z_range = [0, 1]
 	w_range = [0, 1]		# part two
 	if not part:		
-		w_range = [1, 0]		# part one
+		w_range = [1, 0]	# part one
 	for cycle in range(0, 6):
 		new_active_coords = []
 		for x in range(x_range[0]-1, x_range[1]+1):
@@ -61,7 +61,7 @@ for part in [False, True]:		# part one and two
 		if part:		# part two
 			w_range[0] -= 1
 			w_range[1] += 1
-		else:		# part one
+		else:			# part one
 			part1_answer = len(active_coords)
 
 print("First part answer:  ", part1_answer)
