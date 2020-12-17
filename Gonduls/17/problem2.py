@@ -2,12 +2,13 @@ from itertools import permutations as combos
 with open('input.txt', 'r') as inputf:
     lista = inputf.read().split('\n')
 
-close_points = list(set(combos([0,0,0,1,1,1,-1,-1,-1],3)))
-close_points.remove((0,0,0))
+close_points = list(set(combos([0,0,0,0,1,1,1,1,-1,-1,-1,-1],4)))
+close_points.remove((0,0,0,0))
+
 def return_close(position):
     answer = []
     for point in close_points:
-        answer.append((position[0]+point[0], position[1]+point[1], position[2]+point[2]))
+        answer.append((position[0]+point[0], position[1]+point[1], position[2]+point[2], position[3]+point[3]))
     return answer
 
 def new_diz(old):
@@ -35,9 +36,10 @@ def new_diz(old):
 pocket_dimension = {}
 for y, line in enumerate(lista):
     for x, char in enumerate(line):
-        pocket_dimension[x,y,0]=char
+        pocket_dimension[x,y,0,0]=char
 
 for i in range(6):
     pocket_dimension = new_diz(pocket_dimension)
 
 print(list(pocket_dimension.values()).count('#'))
+#differences with problem1: 4th dimension added, nothing new apart from that
