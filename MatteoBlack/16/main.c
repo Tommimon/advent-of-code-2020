@@ -6,9 +6,9 @@
 //
 
 #include <stdio.h>
-#define NOME_RULES "/Users/matteoblack/Desktop/AoC/AoC_16/AoC/AoC/rules.c"
-#define NOME_NEARBY "/Users/matteoblack/Desktop/AoC/AoC_16/AoC/AoC/nearby.c"
-#define NOME_TICKET "/Users/matteoblack/Desktop/AoC/AoC_16/AoC/AoC/ticket.c"
+#define NOME_RULES "/Users/matteoblack/Desktop/AoC/AoC_16/AoC/AoC/rules.txt"
+#define NOME_NEARBY "/Users/matteoblack/Desktop/AoC/AoC_16/AoC/AoC/nearby.txt"
+#define NOME_TICKET "/Users/matteoblack/Desktop/AoC/AoC_16/AoC/AoC/ticket.txt"
 #define ROW_RULES 20
 #define NOT_VALID 51 //Da funz 1 51
 #define DIM_VALID 190
