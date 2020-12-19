@@ -40,14 +40,19 @@ for r in paragraph[0].split('\n'):
     parts = r.replace(':', '').replace('|', '-1').replace('"', '').split(' ')
     index = int(parts[0])
     rules_list += [None] * (index - len(rules_list) + 1)
-    if len(parts) == 2:
-        try:
-            rules_list[index] = [int(parts[1])]
-        except ValueError:
-            rules_list[index] = [parts[1]]
-    else:
+    try:
         rules_list[index] = list(map(int, parts[1:]))
+    except ValueError:
+        rules_list[index] = [parts[1]]
 
+counter = 0
+for m in paragraph[1].split('\n'):
+    if len(m) in match(m, rules_list[0]):
+        counter += 1
+print(counter)
+
+rules_list[8] = [42, -1, 42, 8]
+rules_list[11] = [42, 31, -1, 42, 11, 31]
 counter = 0
 for m in paragraph[1].split('\n'):
     if len(m) in match(m, rules_list[0]):
