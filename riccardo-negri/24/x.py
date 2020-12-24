@@ -12,7 +12,7 @@ with open('input.txt', 'r') as f:
 		while ind < len(line):
 			char = line[ind]
 			if char == 'e': x += 2
-			elif char == 'w':	x -= 2
+			elif char == 'w': x -= 2
 			elif char == 'n':
 				y += 2
 				ind += 1
