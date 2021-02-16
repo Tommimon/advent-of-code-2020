@@ -14,9 +14,11 @@ class Tile:
         self.left = conversion_to_num(left)
         self.right = conversion_to_num(right)
 
-        # For the mirrored values I just need to invert the viewing order
-        self.up_mir = conversion_to_num(matrix[0][::-1])
-        self.down_mir = conversion_to_num(matrix[-1])
+        # For the mirrored values I just need to invert the viewing order of a mirrored matrix;
+        # since mirrored matrixed are just flipped (I just switch the order I view the lines), 
+        # I take those values for the mirrored matrix
+        self.up_mir = conversion_to_num(matrix[-1])
+        self.down_mir = conversion_to_num(matrix[0][::-1])
         self.left_mir = conversion_to_num(left[::-1])
         self.right_mir = conversion_to_num(right[::-1])
     
