@@ -1,5 +1,5 @@
 lista=[]
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/9/input.txt', 'r') as inputf:
     for line in inputf:
         lista.append(int(line))
 

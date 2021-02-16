@@ -1,4 +1,4 @@
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/16/input.txt', 'r') as inputf:
     lista = inputf.read().split('\n')
 rules = []
 for index, el in enumerate(lista):

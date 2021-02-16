@@ -1,5 +1,5 @@
 from itertools import permutations as combos
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/17/input.txt', 'r') as inputf:
     lista = inputf.read().split('\n')
 
 close_points = list(set(combos([0,0,0,1,1,1,-1,-1,-1],3)))

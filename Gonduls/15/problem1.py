@@ -1,5 +1,5 @@
 numbers = {}
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/15/input.txt', 'r') as inputf:
     lista = inputf.read().split(',')
     for i, el in enumerate(lista):
         numbers.update({int(el): i+1})

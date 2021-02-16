@@ -1,5 +1,5 @@
 diz = {}
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/14/input.txt', 'r') as inputf:
     for line in inputf.readlines():
         if ('mask' in line):
             rule = line[7:-1]

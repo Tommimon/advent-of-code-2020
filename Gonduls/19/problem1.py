@@ -22,7 +22,7 @@ def replace_el(key):
     return answers
 
 #input phase
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/19/input.txt', 'r') as inputf:
     lista = inputf.read().split('\n')
 
 #program start

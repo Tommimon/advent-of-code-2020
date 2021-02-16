@@ -1,4 +1,4 @@
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/11/input.txt', 'r') as inputf:
         lista= list(inputf.read().split('\n'))
 
 def change(matrix):

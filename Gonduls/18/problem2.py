@@ -43,7 +43,7 @@ def find_ends(riga, j):
     return(start-1, end_)
 
 
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/18/input.txt', 'r') as inputf:
     lista = inputf.read().split('\n')
 answer = 0
 for riga in lista:

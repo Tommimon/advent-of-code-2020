@@ -38,7 +38,7 @@ def conversion_to_string(num):
     return('.'*(lenght_line - len(result)) + result)
 
 
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/20/input.txt', 'r') as inputf:
     lista = inputf.read().split('\n')
 
 count = 0

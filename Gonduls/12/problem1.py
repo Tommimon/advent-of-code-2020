@@ -1,4 +1,4 @@
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/12/input.txt', 'r') as inputf:
         lista= list(inputf.read().split('\n'))
 cardinals = ['N','E','S','W','N','E','S','W']
 directions = {'N':[1,0],'E':[0,1],'S':[-1,0],'W':[0,-1]}

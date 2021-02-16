@@ -18,7 +18,7 @@ def replace_el(key):
     rules[key]= answers
     return answers
 
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/19/input.txt', 'r') as inputf:
     lista = inputf.read().split('\n')
 
 rules = {}

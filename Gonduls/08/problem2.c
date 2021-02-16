@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 //Like problem1, but tries, for every nop or jmp, swapping between the 2 and checking index
-#define INPUT "input.txt"
+#define INPUT "./Gonduls/8/input.txt"
 #define MAX 654
 
 typedef struct{

@@ -1,4 +1,4 @@
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/13/input.txt', 'r') as inputf:
         lista= list(inputf.read().split('\n'))
         lista[1] = lista[1].split(',')
 buses =[]

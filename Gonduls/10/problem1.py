@@ -1,4 +1,4 @@
-with open('input.txt', 'r') as inputf:
+with open('./Gonduls/10/input.txt', 'r') as inputf:
         lista= list(map(int, inputf.read().split('\n')))
 lista.append(0)
 lista=sorted(lista)
