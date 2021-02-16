@@ -37,12 +37,17 @@ class Tile:
         print(conversion_to_string(self.down_mir))
         print()
 
+    # I only need one type of rotation, I'm choosing clockwise
     def rotate(self, times):
-    
+        for i in range(times % 4):
+            self.matrix = [[self.matrix[line][column] for line in range(lenght_line-1,-1,-1)] for column in range(lenght_line)]
+            self.up, self.right, self.down, self.left =  self.left, self.up, self.right, self.down
+            self.up_mir, self.left_mir, self.down_mir, self.right_mir =  self.right_mir, self.up_mir, self.left_mir, self.down_mir
+
+
     def mirror(self):
         self.matrix = self.matrix[::-1]
         self.mirrored = True
-        rotate(self, 2)
 
 def conversion_to_num(string):
     return (int(string.replace('#','1').replace('.','0'),2))
@@ -80,6 +85,7 @@ answer = 1
 
 for el in tile_list:
     unmatched = 0
+    el.stampa
     curr_sides = [el.up, el.down, el.left, el.right]
     curr_mirrored = [el.up_mir, el.down_mir, el.left_mir, el.right_mir]
     for side in curr_sides:
@@ -89,3 +95,4 @@ for el in tile_list:
         answer *= el.id
 
 print(answer)
+tile_list[1].stampa
