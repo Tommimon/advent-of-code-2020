@@ -80,4 +80,5 @@ for el in tile_list:
             unmatched += 1
     if unmatched == 2:
         answer *= el.id
+
 print(answer)
