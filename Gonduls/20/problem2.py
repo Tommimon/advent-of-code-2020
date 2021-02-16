@@ -1,8 +1,8 @@
 lenght_line = 10
-eq_mirr = 0
 class Tile:
     def __init__(self, number, matrix):
         self.id = int(number)
+        self.matrix = matrix
         # I need a unique representation of each side of a tile,
         # so i transform the string in a binary string and cast it to int.
         # normal is clockwise, mirrored is counter-clockwise
@@ -15,7 +15,8 @@ class Tile:
         self.left = conversion_to_num(left)
         self.right = conversion_to_num(right)
 
-        # For the mirrored values I just need to invert the viewing order
+        # For the mirrored values I just need to invert the viewing order of a mirrored matrix;
+        # since mir
         self.up_mir = conversion_to_num(matrix[0][::-1])
         self.down_mir = conversion_to_num(matrix[-1])
         self.left_mir = conversion_to_num(left[::-1])
@@ -34,6 +35,13 @@ class Tile:
             print(to_print_left[i], ' '*(lenght_line-4), to_print_right[i])
         print(conversion_to_string(self.down_mir))
         print()
+
+    def rotate(self, times):
+    
+    def mirror(self):
+        self.matrix = self.matrix[::-1]
+        self.mirrored = True
+        rotate(self, 2)
 
 def conversion_to_num(string):
     return (int(string.replace('#','1').replace('.','0'),2))
@@ -63,8 +71,6 @@ while i < count*(lenght_line + 2):
 
 sides = []
 for el in tile_list:
-    if(el.right == el.left_mir):
-        eq_mirr += 1
     curr_sides = [el.up, el.down, el.left, el.right, el.up_mir, el.down_mir, el.left_mir, el.right_mir] #
     for side in curr_sides:
         sides.append(side)

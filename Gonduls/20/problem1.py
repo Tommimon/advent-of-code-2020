@@ -1,5 +1,4 @@
 lenght_line = 10
-eq_mirr = 0
 class Tile:
     def __init__(self, number, matrix):
         self.id = int(number)
@@ -20,10 +19,6 @@ class Tile:
         self.down_mir = conversion_to_num(matrix[-1])
         self.left_mir = conversion_to_num(left[::-1])
         self.right_mir = conversion_to_num(right[::-1])
-
-        
-        # I have to keep track wether a tile has been mirrored yet or not
-        self.mirrored = False
     
     def stampa(self):
         print('Tile ', self.id)
@@ -63,8 +58,6 @@ while i < count*(lenght_line + 2):
 
 sides = []
 for el in tile_list:
-    if(el.right == el.left_mir):
-        eq_mirr += 1
     curr_sides = [el.up, el.down, el.left, el.right, el.up_mir, el.down_mir, el.left_mir, el.right_mir] #
     for side in curr_sides:
         sides.append(side)
