@@ -126,7 +126,9 @@ for el in tile_list:
     if unmatched == 2:
         answer *= el.id
         corners.append([tile_list.index(el), corner_sides])
-#print(answer)
+print(answer)
+
+
 ############### start part 2 ####################
 
 tiles_matrix = []
@@ -187,10 +189,39 @@ image = []
 for line in range(lenght_matrix):
     # I'm building the image line by line, each line in tiles_matrix has 8 small lines
     for small_line in range (lenght_line - 2):
-        image.append([''])
+        image.append('')
         for column in range(lenght_matrix):
             part = tile_list[tiles_matrix[line][column]].matrix[small_line + 1][1:-1]
-            #print(part, image[-1])
-            image[-1][0] = image[-1][0] + part
-        print(image[-1][0])
+            image[-1] += part
 
+monster = [
+    '                  # ',
+    '#    ##    ##    ###',
+    ' #  #  #  #  #  #   '
+]
+monster_bits = []
+for line in range(3):
+    for column in range(len(monster[line])):
+        if monster[line][column] == '#':
+            monster_bits.append((line, column))
+
+found = 0
+for mirrored in [False, True]:
+    if mirrored:
+        image = image[::-1]
+    for orientation in range(4):
+        # It rotates automatically
+        image = [[image[line][column] for line in range(len(image)-1,-1,-1)] for column in range(len(image))]
+        image = ["".join(image[line]) for line in range(len(image))]
+        for line in range(len(image) - len(monster)):
+            for column in range(len(image) - len(monster[0])):
+                if all(list(map(lambda el: image[line + el[0]][column + el[1]] == '#', monster_bits))):
+                    found += 1
+    if found>0:
+        break
+
+possible_roughness = 0
+for line in image:
+    possible_roughness += line.count('#')
+
+print(possible_roughness - found*len(monster_bits))
