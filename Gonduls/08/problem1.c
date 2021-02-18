@@ -3,7 +3,7 @@
 //I'm sorry for the lack of comments, I couldn't bother. But I can briefly explain the program here:
 //input -> main -> result. Result just executes the three rules in a recursive manner,
 //always passing the next rule and with that deciding what happens next
-#define INPUT "./Gonduls/8/input.txt"
+#define INPUT "input.txt"
 #define MAX 654
 
 typedef struct{
