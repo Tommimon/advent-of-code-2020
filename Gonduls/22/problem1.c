@@ -105,8 +105,8 @@ int count_points(pcard player){
 }
 
 int play(pcard* player1, pcard* player2){
-    // using lenght 0 as False
     pcard punt;
+    // using lenght 0 as False
     while(lenght(*player1) && lenght(*player2)){
         if((*player1)->value > (*player2)->value){
             punt = (*player1);
