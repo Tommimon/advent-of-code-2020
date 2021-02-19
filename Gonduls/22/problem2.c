@@ -24,7 +24,7 @@ int play(pcard* player1, pcard* player2);
 void add(pcard* player, pcard to_add);
 int count_points(pcard player);
 int lenght(pcard player);
-void copy(pcard *player, int cards, pcard** destination);
+void copy(pcard player, int cards, pcard* destination);
 int confront(passages *done, pcard steps);
 void empty(passages *steps);
 
@@ -126,19 +126,22 @@ int count_points(pcard player){
     return result;
 }
 
-//copies n(cards) cards starting from player
-void copy(pcard *player, int cards, pcard** destination){
+//copies n(cards) cards starting from player. I need pcard to copy from
+//and pointer to pcard to change with malloc 
+void copy(pcard player, int cards, pcard* destination){
     pcard punt;
     int i;
-    (**destination) = malloc(sizeof(card));
-    (**destination)->value = (*player)->value;
-    (**destination)->next = NULL;
-    punt = (**destination);
+    //Initialization
+    (*destination) = malloc(sizeof(card));
+    (*destination)->value = player->value;
+    (*destination)->next = NULL;
+    punt = (*destination);
+    //I need to repeat malloc func cards times total, one being the initialization
     for (i = 0; i<cards - 1; i++){
-        (*player) = (*player)->next;
+        player = player->next;
         punt->next = malloc(sizeof(card));
         punt = punt->next;
-        punt->value = (*player)->value;
+        punt->value = player->value;
         punt->next = NULL;
     }
 }
@@ -151,8 +154,13 @@ int confront(passages *done, pcard steps){
     while(ppunt != NULL){
 
         // I need to remember the last element in list so that I can eventually add steps to done afterwards
-        if(ppunt->next == NULL)
+        if(ppunt->next == NULL){
             end = ppunt;
+            printf("end->passage: \t");
+            print_all(end->passage);
+            printf("steps: \t");
+            print_all(steps);
+        }
 
         // Have to initialize both decks of cards that have to be confronted
         // ppunt changes, steps doesn't
@@ -175,14 +183,17 @@ int confront(passages *done, pcard steps){
         ppunt = (*ppunt).next;
     }
     end->next = malloc(sizeof(passages));
+    //print_all(end->passage);
     end = end->next;
     end->next = NULL;
-    end->passage = steps;
+    copy(steps, lenght(steps), &(end->passage) );
+    //end->passage = steps;
     return 0;
 }
 
 void empty(passages *steps){
     passages *pppunt;
+    int i;
     pcard punt1, punt2;
     pppunt = steps;
     while (pppunt != NULL){
@@ -191,10 +202,15 @@ void empty(passages *steps){
             continue;
         }
         punt2 = punt1->next;
+        i = 0;
         while(punt2 != NULL){
+            //print_all(pppunt->passage);
+            printf("%d\t", i);
+            //print_all(punt2);
+            i++;
             free(punt1);
             punt1 = punt2;
-            punt2 = punt1->next;
+            punt2 = punt2->next;
         }
 
         pppunt = steps->next;
@@ -206,18 +222,23 @@ void empty(passages *steps){
 // now a recursive function, return 0 = player1 won, return 1 = player2 won
 int play(pcard* player1, pcard* player2){
     pcard punt;
-    passages * pl1_moves, * pl2_moves;
-    passages *cleanup;
-    pcard *sub_pl1, *sub_pl2;
+    passages * pl1_moves = NULL, * pl2_moves = NULL;
+    // created to insert
+    passages *cleanup = NULL;
+    // destinations for copy for subgames
+    pcard *sub_pl1 = NULL, *sub_pl2 = NULL;
     int winner, subgame = 0;
+    int con1, con2;
 
     //I have to initialize passages with first state
     pl1_moves = malloc(sizeof(passages));
     pl1_moves->next = NULL;
-    pl1_moves->passage = *player1;
+    copy(*player1, lenght(*player1), &(pl1_moves->passage));
+    //pl1_moves->passage = *player1;
     pl2_moves = malloc(sizeof(passages));
     pl2_moves->next = NULL;
-    pl2_moves->passage = *player2;
+    copy(*player2, lenght(*player2), &(pl2_moves->passage));
+    //pl2_moves->passage = *player2;
 
     // using lenght 0 as False - if a player doesn't have any more cards he lost
     while(lenght(*player1) && lenght(*player2)){
@@ -227,8 +248,9 @@ int play(pcard* player1, pcard* player2){
         print_all(*player2);
         printf("\n");
         if((*player1)->value < lenght(*player1) && (*player2)->value < lenght(*player2)){
-            copy(&((*player1)->next), (*player1)->value, &sub_pl1);
-            copy(&((*player2)->next), (*player2)->value, &sub_pl2);
+            copy((*player1)->next, (*player1)->value, sub_pl1);
+            copy((*player2)->next, (*player2)->value, sub_pl2);
+            //copy(*player2, lenght(*player2), &(pl2_moves->passage));
             // winner determins who gets the card
             winner = play(sub_pl1, sub_pl2);
             subgame = 1;
@@ -238,13 +260,13 @@ int play(pcard* player1, pcard* player2){
             cleanup->next = malloc(sizeof(passages));
             cleanup->next->next = NULL;
             cleanup->next->passage = (*sub_pl2);
-            //empty(cleanup);
+            empty(cleanup);
         }
         else if((*player1)->value > (*player2)->value)
             winner = 0;
         else
             winner = 1;
-        printf("\t%d\n", winner);
+        //printf("\t%d\n", winner);
         if (winner){
             punt = (*player2);
             (*player2) = punt->next;
@@ -261,8 +283,11 @@ int play(pcard* player1, pcard* player2){
             (*player2) = punt->next;
             add(player1, punt);
         }
+        //printf("here\n");
         // have to check if I've entered a loop and to keep updated passages, confront returns 1 if steps in done
-        if ((confront(pl1_moves, *player1) && confront(pl2_moves, *player2) && subgame == 0)){
+        con1 = confront(pl1_moves, *player1);
+        con2 = confront(pl2_moves, *player2);
+        if (con1 && con2 && subgame == 0){
             printf("\tENDED\n");
             empty(pl1_moves);
             empty(pl2_moves);
@@ -271,33 +296,12 @@ int play(pcard* player1, pcard* player2){
         }
         subgame = 0;
     }
+    printf("here\n");
+    print_all(pl1_moves->passage);
     empty(pl1_moves);
+    print_all(pl2_moves->passage);
     empty(pl2_moves);
     if(lenght(*player1))
         return 0;
     return 1;
 }
-
-/*int play(pcard* player1, pcard* player2){
-    pcard punt;
-    // using lenght 0 as False
-    while(lenght(*player1) && lenght(*player2)){
-        if((*player1)->value > (*player2)->value){
-            punt = (*player1);
-            (*player1) = punt->next;
-            add(player1, punt);
-            punt = (*player2);
-            (*player2) = punt->next;
-            add(player1, punt);
-            continue;
-        }
-        punt = (*player2);
-        (*player2) = punt->next;
-        add(player2, punt);
-        punt = (*player1);
-        (*player1) = punt->next;
-        add(player2, punt);
-    }
-    return(0);
-}
-*/
