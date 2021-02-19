@@ -65,9 +65,10 @@ pcard last(pcard start){
 
 void print_all(pcard start){
     while(start != NULL){
-        printf("%d\n", start->value);
+        printf("%d, ", start->value);
         start = start->next;
     }
+    printf("\n");
 }
 
 void init(pcard* player1, FILE* input){
@@ -142,17 +143,6 @@ void copy(pcard *player, int cards, pcard** destination){
     }
 }
 
-void empty(passages *steps){
-    passages *pppunt;
-    pppunt = steps;
-    while (pppunt != NULL){
-        free(steps->passage);
-        pppunt = steps->next;
-        free(steps);
-        steps = pppunt;
-    }
-}
-
 // returns 1 if steps was found in done
 int confront(passages *done, pcard steps){
     passages *ppunt, *end;
@@ -191,13 +181,35 @@ int confront(passages *done, pcard steps){
     return 0;
 }
 
+void empty(passages *steps){
+    passages *pppunt;
+    pcard punt1, punt2;
+    pppunt = steps;
+    while (pppunt != NULL){
+        punt1 = pppunt->passage;
+        if(punt1 == NULL){
+            continue;
+        }
+        punt2 = punt1->next;
+        while(punt2 != NULL){
+            free(punt1);
+            punt1 = punt2;
+            punt2 = punt1->next;
+        }
+
+        pppunt = steps->next;
+        free(steps);
+        steps = pppunt;
+    }
+}
+
 // now a recursive function, return 0 = player1 won, return 1 = player2 won
 int play(pcard* player1, pcard* player2){
     pcard punt;
     passages * pl1_moves, * pl2_moves;
     passages *cleanup;
     pcard *sub_pl1, *sub_pl2;
-    int winner;
+    int winner, subgame = 0;
 
     //I have to initialize passages with first state
     pl1_moves = malloc(sizeof(passages));
@@ -209,11 +221,17 @@ int play(pcard* player1, pcard* player2){
 
     // using lenght 0 as False - if a player doesn't have any more cards he lost
     while(lenght(*player1) && lenght(*player2)){
+        printf("Player 1:\n");
+        print_all(*player1);
+        printf("Player 2:\n");
+        print_all(*player2);
+        printf("\n");
         if((*player1)->value < lenght(*player1) && (*player2)->value < lenght(*player2)){
             copy(&((*player1)->next), (*player1)->value, &sub_pl1);
             copy(&((*player2)->next), (*player2)->value, &sub_pl2);
             // winner determins who gets the card
             winner = play(sub_pl1, sub_pl2);
+            subgame = 1;
             // I have to cleanup all the mallocs created by copy
             cleanup = malloc(sizeof(passages));
             cleanup->passage = (*sub_pl1);
@@ -226,6 +244,7 @@ int play(pcard* player1, pcard* player2){
             winner = 0;
         else
             winner = 1;
+        printf("\t%d\n", winner);
         if (winner){
             punt = (*player2);
             (*player2) = punt->next;
@@ -243,15 +262,17 @@ int play(pcard* player1, pcard* player2){
             add(player1, punt);
         }
         // have to check if I've entered a loop and to keep updated passages, confront returns 1 if steps in done
-        if (confront(pl1_moves, *player1) && confront(pl2_moves, *player2)){
-            //empty(pl1_moves);
-            //empty(pl2_moves);
+        if ((confront(pl1_moves, *player1) && confront(pl2_moves, *player2) && subgame == 0)){
+            printf("\tENDED\n");
+            empty(pl1_moves);
+            empty(pl2_moves);
             // If a loop occured player 1 automatically wins
             return(0);
         }
+        subgame = 0;
     }
-    //empty(pl1_moves);
-    //empty(pl2_moves);
+    empty(pl1_moves);
+    empty(pl2_moves);
     if(lenght(*player1))
         return 0;
     return 1;
