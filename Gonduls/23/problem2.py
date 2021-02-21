@@ -62,20 +62,28 @@ class cups_circle:
         tail.next = following
         following.prev = tail
         
+    def list_cups(self):
+        answer = []
+        for i in range(1,10):
+            answer.append(self.find(i))
+        punt = self.find(10)
+        for i in range(10, 1000001):
+            answer.append(punt)
+            punt = punt.next
+        return answer
 
-
-input = 389125467
+############################## Program start #####################
+input = 215694783
 max_l = 1000000
 cups = list(map(lambda el: int(el), str(input))) #showoff
 cups.extend(list(range(10, max_l +1)))
 whole_circle = cups_circle()
+
 for label in cups:
     whole_circle.append(label)
 
-# It probably takes less operations to find cup 1 now than later, saves time
-el_1 = whole_circle.find(1)
-# So that I now where the max values are at all time
-max_values = [whole_circle.find(max_l), whole_circle.find(max_l - 1), whole_circle.find(max_l - 2), whole_circle.find(max_l - 3)]
+# cups_cup contains an indexed list of all cups, so that I don't have to search for them
+cups_cup = whole_circle.list_cups()
 for i in range (10000000):
     #print(i)
     three = whole_circle.take_out()
@@ -83,13 +91,13 @@ for i in range (10000000):
     while (dest in (three.value, three.next.value, three.prev.value)) and dest>0:
         dest -= 1
     if dest == 0:
-        for el in max_values:
+        for el in cups_cup[::-1]:
             if el.value not in (three.value, three.next.value, three.prev.value):
                 dest = el
                 break
     else:
-        dest = whole_circle.find(dest)
+        dest = cups_cup[dest-1]
     whole_circle.insert_circle(three, dest)
     whole_circle.curr = whole_circle.curr.next
-print(el_1.next.value * el_1.next.next.value)
+print(cups_cup[0].next.value * cups_cup[0].next.next.value)
 #print(cups[cups.index(1) -max_l +1] * cups[cups.index(1) -max_l +2])
