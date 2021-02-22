@@ -1,3 +1,4 @@
+# check Tommimon' solution to first part for a better/easier/faster/shorter algorithm
 with open('./Gonduls/24/input.txt') as inputf:
     lines = inputf.read().split('\n')
 

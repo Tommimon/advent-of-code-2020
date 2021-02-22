@@ -35,10 +35,10 @@ for line in coordinates:
     else:
         tiles.append(line)
 
-#print(len(tiles))
-#print((tiles))
 
+######################################## second part (two options, both take more than 2 min to resolve) #########################
 for i in range(100):
+    #print(len(tiles))
     max_x = max(list(map(lambda el: abs(el[0]), tiles)))
     max_y = max(list(map(lambda el: abs(el[1]), tiles)))
     new_tiles = []
@@ -54,4 +54,25 @@ for i in range(100):
                 if(list(map(lambda el: el in tiles, adjacent)).count(True) == 2):
                     new_tiles.append((x,y))
     tiles = new_tiles
+
+#for i in range(100):
+#    check = set()
+#    new_tiles = []
+#    for el in tiles:
+#        x, y = el
+#        adjacent = [(x+2,y), (x-2,y), (x+1,y+1), (x+1,y-1), (x-1,y+1), (x-1,y-1)]
+#        for elem in adjacent:
+#            check.add(elem)
+#        check.add(el)
+#    for coord in check:
+#        x, y = coord
+#        adjacent = [(x+2,y), (x-2,y), (x+1,y+1), (x+1,y-1), (x-1,y+1), (x-1,y-1)]
+#        if coord in tiles:
+#            if (list(map(lambda el: el in tiles, adjacent)).count(True) in (1,2)):
+#                new_tiles.append(coord)
+#        else:
+#            if(list(map(lambda el: el in tiles, adjacent)).count(True) == 2):
+#                new_tiles.append(coord)
+#    tiles = new_tiles
+
 print(len(tiles))
